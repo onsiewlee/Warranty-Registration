@@ -1,0 +1,236 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colourink Warranty Registration</title>
+    <style>
+        @font-face {
+            font-family: example;
+            src: url(fontFile.ttf);
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: honeydew;
+            background-image: url("f3.jpg");
+            background-size: cover;
+            width: 100%;
+        }
+
+        #wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        img#wr_logo {
+            max-width: 40%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+
+        form#warrantyForm > h2 {
+            text-align: center;
+            color: #f4f4f4;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        form#warrantyForm {
+            background-color: #80dfff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: auto;
+            padding: 3%;
+            width: 80%;
+            height: 60%;
+            box-sizing: border-box;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: black;
+        }
+
+        p#wr_intro {
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+            display: block;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 800px;
+            background-color: aquamarine;
+            font-weight: bolder;
+        }
+
+        input.wr_input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+            input.wr_input:hover {
+                background-color: antiquewhite;
+            }
+
+        button {
+            background-color: forestgreen;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 30%;
+            box-sizing: border-box;
+            margin: 20px;
+        }
+
+            button:hover {
+                background-color: black;
+            }
+
+        /* Tablet Styles */
+        @media screen and (min-width: 768px) and (max-width: 991px) {
+            form#warrantyForm {
+                width: 70%;
+                margin: auto;
+            }
+
+            img#wr_logo {
+                max-width: 70%;
+            }
+        }
+
+        /* Phone Styles */
+        @media screen and (max-width: 767px) {
+            form#warrantyForm {
+                width: 90%;
+                margin: auto;
+            }
+
+            img#wr_logo {
+                max-width: 80%;
+            }
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrapper">
+        <!--<img id="wr_logo" alt="Colourink logo" src="image\colourink logo.jpg" />-->
+
+        <p id="wr_intro">
+            Welcome to Colourink Warranty Registration<br />
+
+            Thank you for choosing Colourink Consumable Sdn.Bhd!<br />
+
+            We appreciate your trust in our products and are committed to providing you with exceptional quality and service.
+
+            To ensure your peace of mind and to activate your warranty, we encourage you to complete the warranty registration process. By registering your product, you gain access to a range of benefits.
+        </p>
+
+        <form id="warrantyForm" method="post" action="process_form.php" onsubmit="return validateForm()">
+            <h2>Warranty Registration</h2>
+
+            <label for="fullName">Full Name:</label>
+            <input class="wr_input" type="text" id="name" name="fullName" required>
+            <span id="nameError" class="error"></span><br>
+
+            <label for="email">Email:</label>
+            <input class="wr_input" type="email" id="email" name="email" required>
+            <span id="emailError" class="error"></span><br>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input class="wr_input" type="tel" id="phone" name="phoneNumber" required>
+            <span id="phoneError" class="error"></span><br>
+
+            <label for="purchaseDate">Purchase Date:</label>
+            <input class="wr_input" type="date" id="purchaseDate" name="purchaseDate" required>
+
+            <label for="productModel">Product Model:</label>
+            <input class="wr_input" type="text" id="productModel" name="productModel" required>
+            <span id="modelError" class="error"></span><br>
+
+            <label for="serialNumber">Serial Number:</label>
+            <input class="wr_input" type="text" id="serialNumber" name="serialNumber" required>
+            <span id="serialNoError" class="error"></span><br>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <script>
+            function validateForm() {
+                document.getElementById("phoneError").innerHTML = "";
+                document.getElementById("emailError").innerHTML = "";
+                document.getElementById("nameError").innerHTML = "";
+                document.getElementById("modelError").innerHTML = "";
+                document.getElementById("serialNoError").innerHTML = "";
+
+                var name = document.getElementById('name').value;
+                var email = document.getElementById('email').value;
+                var phone = document.getElementById('phone').value;
+                var productModel = document.getElementById('productModel').value;
+                var serialNumber = document.getElementById('serialNumber').value;
+
+                var phoneRegex = /^(01)[0-9]*[0-9]{7,8}$/;
+                var emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+
+                if (name === '' || email === '' || productModel === '' || serialNumber === '') {
+                    alert('All fields are required.');
+                    return false;
+                }
+
+                if (name.length < 3 || name.length > 50) {
+                    document.getElementById("nameError").innerHTML = "<span style='color: red;'>Name should be between 3 and 50 characters.</span><br >";
+                    return false;
+                }
+
+                if (!phoneRegex.test(phone)) {
+                    document.getElementById("phoneError").innerHTML = "<span style='color: red;'>Invalid phone format</span><br >";
+                    return false;
+                }
+
+                if (!emailRegex.test(email)) {
+                    document.getElementById("emailError").innerHTML = "<span style='color: red;'>Invalid email format</span><br >";
+                    return false;
+                }
+
+                if (productModel.length < 3 || productModel.length > 30) {
+                    document.getElementById("modelError").innerHTML = "<span style='color: red;'>Product Model should be between 3 and 30 characters.</span><br >";
+                    return false;
+                }
+
+                if (serialNumber.length < 5 || serialNumber.length > 15) {
+                    document.getElementById("serialNoError").innerHTML = "<span style='color: red;'>Serial Number should be between 5 and 20 characters.</span><br >";
+                    return false;
+                }
+
+                alert('Warranty registration successful!');
+                return true;
+            }
+        </script>
+
+
+    </div>
+</body>
+</html>
