@@ -58,6 +58,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 echo "Registration Successfully...";
+                // Redirect to the warranty registration file
+                header("Location: warranty_registration.html");
             } else {
                 echo "Error: " . $stmt->error;
             }
