@@ -71,7 +71,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } else {
     // If the form is not submitted, redirect to the form page
-    header("Location: your_form_page.html");
+       header("Location: warranty registeration.html");
+    
+       alert('Warranty registration unsuccessful!');
     exit;
 }
 
